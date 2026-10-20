@@ -1,4 +1,6 @@
 import { NavLink } from 'react-router'
+import Button from './ui/Button.tsx'
+import { useAuth } from '../context/AuthContext.tsx'
 import logo from '../assets/logo.svg'
 import type { NavItem } from '../types.ts'
 
@@ -8,6 +10,8 @@ type HeaderProps = {
 }
 
 function Header({ title, links }: HeaderProps) {
+  const { signedIn, signOut } = useAuth()
+
   return (
     <header className="site-header">
       <NavLink className="site-header__brand" to="/">
@@ -24,6 +28,18 @@ function Header({ title, links }: HeaderProps) {
           </NavLink>
         ))}
       </nav>
+
+      <div className="site-header__auth">
+        {signedIn ? (
+          <Button variant="secondary" onClick={signOut}>
+            Sign out
+          </Button>
+        ) : (
+          <NavLink className="button button--secondary" to="/sign-in">
+            Sign in
+          </NavLink>
+        )}
+      </div>
     </header>
   )
 }

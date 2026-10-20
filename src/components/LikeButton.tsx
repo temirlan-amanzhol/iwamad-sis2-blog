@@ -18,8 +18,11 @@ function LikeButton({ postId, postTitle }: LikeButtonProps) {
       aria-pressed={liked}
       onClick={() => toggleLike(postId)}
     >
-      <span aria-hidden="true">{liked ? '♥' : '♡'}</span> Like
-      <span className="visually-hidden">: {postTitle}</span>
+      {/* One span, because Button is a flex box and would drop the space between icon and text */}
+      <span>
+        <span aria-hidden="true">{liked ? '♥' : '♡'}</span> Like
+        <span className="visually-hidden">: {postTitle}</span>
+      </span>
     </Button>
   )
 }

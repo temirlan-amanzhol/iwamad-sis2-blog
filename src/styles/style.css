@@ -81,6 +81,10 @@ a { color: var(--color-primary); text-underline-offset: 3px; }
   text-decoration-thickness: 2px;
 }
 
+/* Sign in / Sign out stays on the first row next to the logo */
+.site-header__auth { margin-left: auto; }
+.site-header__auth a.active { font-weight: 600; }
+
 /* ===== Main ===== */
 main {
   flex: 1;
@@ -95,6 +99,8 @@ main > .card { max-width: 720px; margin: 0 auto; }
 .link-list { margin: 0; padding-left: var(--space-6); }
 
 .page-title { margin-bottom: var(--space-4); }
+
+.empty-state { color: var(--color-text-muted); }
 
 .home { display: grid; gap: var(--space-6); }
 .home > .card { max-width: 720px; }
@@ -147,6 +153,7 @@ a.button { text-decoration: none; }
   /* Header: everything in one row, like the Figma Header */
   .site-header { padding: var(--space-6) var(--space-4); flex-wrap: nowrap; }
   .site-nav { order: 0; width: auto; margin-left: auto; }
+  .site-header__auth { margin-left: 0; }
 }
 
 @media (min-width: 900px) {
