@@ -1,5 +1,6 @@
 import { Link, useParams } from 'react-router'
 import Card from '../components/ui/Card.tsx'
+import LikeButton from '../components/LikeButton.tsx'
 import Tag from '../components/ui/Tag.tsx'
 import { formatDate } from '../lib/formatDate.ts'
 import type { Post } from '../types.ts'
@@ -44,6 +45,9 @@ function PostPage({ posts }: PostPageProps) {
           // The paragraphs never change order, so the index is a safe key here
           <p key={index}>{paragraph}</p>
         ))}
+      </div>
+      <div className="post-card__actions">
+        <LikeButton postId={post.id} postTitle={post.title} />
       </div>
       <p>
         <Link to="/posts">← Back to all posts</Link>

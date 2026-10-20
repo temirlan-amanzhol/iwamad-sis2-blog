@@ -1,5 +1,6 @@
 import { Link } from 'react-router'
 import Card from './ui/Card.tsx'
+import LikeButton from './LikeButton.tsx'
 import Tag from './ui/Tag.tsx'
 import { formatDate } from '../lib/formatDate.ts'
 import type { Post } from '../types.ts'
@@ -32,6 +33,7 @@ function PostCard({ post }: PostCardProps) {
         <Link className="button button--secondary" to={`/posts/${post.id}`}>
           Read more<span className="visually-hidden">: {post.title}</span>
         </Link>
+        <LikeButton postId={post.id} postTitle={post.title} />
       </div>
     </Card>
   )

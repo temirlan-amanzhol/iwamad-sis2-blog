@@ -1,5 +1,6 @@
 import { Route, Routes } from 'react-router'
 import Layout from './components/Layout.tsx'
+import { LikesProvider } from './context/LikesContext.tsx'
 import Home from './pages/Home.tsx'
 import Posts from './pages/Posts.tsx'
 import PostPage from './pages/PostPage.tsx'
@@ -16,16 +17,19 @@ const navLinks: NavItem[] = [
 
 function App() {
   return (
-    <Routes>
-      {/* One layout route: every page is rendered inside its <Outlet /> */}
-      <Route element={<Layout title="Temirlan's blog" navLinks={navLinks} />}>
-        <Route index element={<Home posts={posts} />} />
-        <Route path="posts" element={<Posts posts={posts} />} />
-        <Route path="posts/:id" element={<PostPage posts={posts} />} />
-        <Route path="contact" element={<Contact />} />
-        <Route path="*" element={<NotFound />} />
-      </Route>
-    </Routes>
+    // Likes are shared by every page, so the provider wraps all the routes
+    <LikesProvider>
+      <Routes>
+        {/* One layout route: every page is rendered inside its <Outlet /> */}
+        <Route element={<Layout title="Temirlan's blog" navLinks={navLinks} />}>
+          <Route index element={<Home posts={posts} />} />
+          <Route path="posts" element={<Posts posts={posts} />} />
+          <Route path="posts/:id" element={<PostPage posts={posts} />} />
+          <Route path="contact" element={<Contact />} />
+          <Route path="*" element={<NotFound />} />
+        </Route>
+      </Routes>
+    </LikesProvider>
   )
 }
 
