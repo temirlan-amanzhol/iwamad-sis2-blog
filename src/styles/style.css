@@ -26,6 +26,16 @@ h1, h2 { font-size: var(--text-lg); font-weight: 600; }
 
 a { color: var(--color-primary); text-underline-offset: 3px; }
 
+/* Text for screen readers only */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
 /* Visible keyboard focus for links, buttons and anything else focusable */
 :focus-visible {
   outline: 3px solid var(--color-primary);
@@ -84,6 +94,45 @@ main > .card { max-width: 720px; margin: 0 auto; }
 
 .link-list { margin: 0; padding-left: var(--space-6); }
 
+.page-title { margin-bottom: var(--space-4); }
+
+.home { display: grid; gap: var(--space-6); }
+.home > .card { max-width: 720px; }
+
+/* ===== Posts: phone 1 column, desktop 2 columns (HANDOFF breakpoints) ===== */
+.post-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+  align-items: start;
+}
+
+.post-card__title { color: var(--color-text); text-decoration: none; }
+.post-card__title:hover { color: var(--color-primary); text-decoration: underline; }
+
+.post-date { color: var(--color-text-muted); font-size: var(--text-sm); }
+
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.post-card__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+/* A Link that looks like the secondary Button */
+a.button { text-decoration: none; }
+
+.post-body { display: grid; gap: var(--space-4); }
+
 /* ===== Footer ===== */
 .site-footer {
   padding: var(--space-4);
@@ -98,4 +147,8 @@ main > .card { max-width: 720px; margin: 0 auto; }
   /* Header: everything in one row, like the Figma Header */
   .site-header { padding: var(--space-6) var(--space-4); flex-wrap: nowrap; }
   .site-nav { order: 0; width: auto; margin-left: auto; }
+}
+
+@media (min-width: 900px) {
+  .post-grid { grid-template-columns: 1fr 1fr; }
 }
