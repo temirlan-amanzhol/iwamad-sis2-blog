@@ -1,32 +1,37 @@
-# React + TypeScript + Vite
+# iwamad-sis2-blog
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Pages: https://temirlan-amanzhol.github.io/iwamad-sis2-blog/
 
-Currently, two official plugins are available:
+Tests: Test Files  3 passed (3) · Tests  6 passed (6)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Protected: /favorites
 
-## React Compiler
+A small blog about ads, Reels and learning React – IWaMAD SIS 2, built with React, TypeScript,
+React Router and Vite. Styles come from the Week 5 starter design (tokens and `Button`, `Card`, `Tag`).
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## What is where
 
-## Expanding the Oxlint configuration
+| Feature | Files |
+|---|---|
+| Pages inside one layout route (Header and Footer stay) | `src/App.tsx`, `src/components/Layout.tsx`, `src/components/Header.tsx` |
+| Posts: one typed array, drawn with `.map()` through `PostCard` | `src/data/posts.ts`, `src/types.ts`, `src/components/PostCard.tsx`, `src/pages/Posts.tsx` |
+| A page per post at `/posts/<id>` (`useParams`), message for an unknown id | `src/pages/PostPage.tsx` |
+| Like button, each post keeps its own value (Context + `useState`) | `src/context/LikesContext.tsx`, `src/components/LikeButton.tsx` |
+| 404 page for unknown URLs | `src/pages/NotFound.tsx` |
+| Route protection: `/favorites` only for a signed-in reader | `src/components/RequireAuth.tsx`, `src/context/AuthContext.tsx`, `src/pages/SignInPage.tsx`, `src/pages/FavoritesPage.tsx` |
+| Tests (Vitest + React Testing Library) | `src/**/*.test.tsx` |
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
+Signing in is one boolean in React state (no password, no server), so sign-in and likes reset on refresh.
 
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+## Scripts
+
+```bash
+npm ci           # install exactly the versions in package-lock.json
+npm run dev      # local dev server
+npm test         # Vitest + React Testing Library
+npm run lint     # oxlint
+npm run build    # type check + production build into docs/ (+ docs/404.html)
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+GitHub Pages publishes the `main` branch, folder `/docs`. `docs/404.html` is a copy of `index.html`,
+so opening `/posts/3` directly or pressing refresh still loads the app.
