@@ -63,4 +63,16 @@ export const posts: Post[] = [
     ],
     tags: ['React', 'TypeScript'],
   },
+  {
+    id: 6,
+    title: 'A page only for signed-in readers',
+    date: '2026-10-23',
+    excerpt: 'Hiding a link is not protection. The route itself has to check before it shows the page.',
+    body: [
+      'This blog has a Favorites page for signed-in readers. My first idea was to hide the Favorites link when you are signed out. But anyone can still type the address, so hiding a link protects nothing.',
+      'The fix is a small layout route that checks first. If you are signed in, it shows the page. If not, it sends you to the sign-in page and remembers where you wanted to go, so after signing in you land back there.',
+      'Signing in here is only one true or false value in React state, with no password and no server. That is enough to learn the idea. Real accounts come later in the course.',
+    ],
+    tags: ['React', 'Routing'],
+  },
 ]
